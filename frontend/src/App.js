@@ -1,8 +1,11 @@
+import { theme } from './theme.js'
+import { ThemeProvider, CssBaseline } from '@mui/material';
+
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+    </ThemeProvider>
   );
 }
 
