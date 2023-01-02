@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from '@mui/material';
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
     palette: {
@@ -9,5 +9,6 @@ export const theme = createTheme({
         h1: {
             fontWeight: 600
         }
-    }
+    },
+    
 });
