@@ -1,0 +1,1 @@
+Run uvicorn src.main:app and open http://127.0.0.1:8000 --> should see a hello world message
