@@ -1,9 +1,7 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
-import { UrlContext } from '../App';
 
 const DataViewer = () => {
-  const { url } = useContext(UrlContext);
   const [urlData, setUrlData] = useState(null);
 
   const fetchData = async () => {
@@ -13,7 +11,7 @@ const DataViewer = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url }),
+        // body: JSON.stringify({ url }),
       });
       const jsonData = await response.json();
       setUrlData(jsonData);
