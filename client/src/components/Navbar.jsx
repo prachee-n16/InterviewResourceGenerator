@@ -1,26 +1,36 @@
 import React from 'react'
-
-// MUI Imports
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import { AppBar, Toolbar, Typography } from '@mui/material'
 import StreamRoundedIcon from '@mui/icons-material/StreamRounded';
-import { Typography } from '@mui/material';
 
 const Navbar = () => {
   return (
-    <nav id="navbar">
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <StreamRoundedIcon fontSize="small" sx={{ mr: 1 }}/>
-                    <Typography sx={{fontWeight: 'bold'}}>
-                        upwork
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-        </Box>
-    </nav>
+    <AppBar 
+        position='static'
+        elevation={0}
+        sx={{
+            backgroundColor: 'white',
+            color: '#121212',
+            borderBottom: '1px solid lightgray',
+            fontWeight: 'bold',
+            fontSize: 12,
+        }}
+    >
+        <Toolbar variant="dense">
+            <StreamRoundedIcon 
+                sx={{
+                    marginLeft: 9
+                }}
+            />
+            <Typography
+                variant="h6"
+                sx={{
+                    marginLeft: 2
+                }}
+            >
+                upwork.
+            </Typography>
+        </Toolbar>
+    </AppBar>
   )
 }
 

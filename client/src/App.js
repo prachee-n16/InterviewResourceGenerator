@@ -1,40 +1,28 @@
-// Vendor imports
+// VENDOR Imports
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 
-// Local Imports
+// local imports
 import Navbar from './components/Navbar';
-import UrlInputForm from './components/screens/UrlInputForm';
-import DataViewer from './components/screens/DataViewer'
-import {UrlInputFormContainer, DataViewerContainer} from './utilities/containers'
-
-// Styles
-import theme from './theme'
+import { Landing } from './screens/Landing/Landing';
+import { UrlInputForm } from './screens/UrlInputForm/UrlInputForm';
+// style imports
+import theme from './assets/styles/theme';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route exact path="/" element={
-              <UrlInputFormContainer>
-                <UrlInputForm />
-              </UrlInputFormContainer>
-            } 
-          />
-          <Route exact path="/" element={
-              <DataViewerContainer>
-                <DataViewer />
-              </DataViewerContainer>
-            } 
-          />
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/input-description" element={<UrlInputForm />} />
         </Routes>
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;

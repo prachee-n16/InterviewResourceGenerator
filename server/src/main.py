@@ -1,13 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from selenium import webdriver
+import time
+import pandas as pd
 
 # Python class that provides all of the functionality
 app = FastAPI()
 # Configure CORS settings
 origins = [
     "http://localhost",
-    "http://localhost:3001",  # Replace with your React application's URL
+    "http://localhost:3000",  # Replace with your React application's URL
 ]
 
 app.add_middleware(
