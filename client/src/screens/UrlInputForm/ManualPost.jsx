@@ -11,15 +11,35 @@ const ManualPost = () => {
     description: '',
   });
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log(jobPostDetails);
-    setJobPostDetails({
-      jobTitle: '',
-      company: '',
-      jobField: '',
-      description: '',
-    });
+    try {
+      const response = await fetch('http://127.0.0.1:8000/find-job-posting', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobPostDetails),
+      });
+
+      if (response.ok) {
+        // Request was successful, handle the response if needed
+        const data = await response.json();
+        console.log('Response from the backend API:', data);
+      } else {
+        // Request failed, handle the error if needed
+        console.error('Error:', response.statusText);
+      }
+
+      setJobPostDetails({
+        jobTitle: '',
+        company: '',
+        jobField: '',
+        description: '',
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleInputChange = event => {
