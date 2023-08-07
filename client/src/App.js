@@ -13,6 +13,7 @@ import ResultsSummary from './screens/ResultsSummary/ResultsSummary';
 // style imports
 import theme from './assets/styles/theme';
 import './App.css';
+import PostingStepOne from './screens/wizard/PostingStepOne';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               path="/summarize-results"
               element={<ResultsSummary />}
             />
+            <Route exact path="/form" element={<PostingStepOne />} />
           </Routes>
         </ThemeProvider>
       </Router>
