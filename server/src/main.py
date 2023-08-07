@@ -42,7 +42,7 @@ class JobPostingRequest(BaseModel):
 # Return: Generator (iterator) that yields found URLs. If the stop parameter is None the iterator will loop forever.
 
 
-def perform_google_search(query, tld="co.in", num=2, stop=10, pause=2):
+def perform_google_search(query, tld="co.in", num=3, stop=2, pause=2):
     results = []
     for url in search(query, tld=tld, num=num, stop=stop, pause=pause):
         results.append(url)
@@ -62,11 +62,18 @@ async def get_job_posting_details(data: JobPostingRequest):
     company = data.company
     description = data.description
 
-    url_lists = {
-        url_title: [],
-        url_jobField: [],
-        url_company: [],
-        url_description: []
-    }
+    url_lists = {}
+    url_lists['url_title'] = perform_google_search(
+        f"{title} interview questions"
+    )
 
-    return {"message": "This object will have the content sourced from the linkedin page, so it can serve as default text"}
+    url_lists['url_jobField'] = perform_google_search(
+        f"latest news in {jobField} jobs"
+    )
+
+    url_lists['url_company'] = perform_google_search(
+        f"{company} Glassdoor site:glassdoor.com", "co.in", 1, 1, 2
+    )
+
+    print(url_lists)
+    return url_lists

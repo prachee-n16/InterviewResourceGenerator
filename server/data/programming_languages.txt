@@ -1,6 +1,6 @@
 A.NET
 A#
-A sharp
+A Sharp
 A-0 System
 A+
 ABAP
@@ -8,7 +8,7 @@ ABC
 ABC ALGOL
 ACC
 Accent
-Ace Distributed Application Specification Language 
+Ace Distributed Application Specification Language
 DASL
 Action!
 ActionScript
@@ -34,7 +34,7 @@ Amiga E
 AMPL
 Analitik
 AngelScript
-Apache Pig latin
+Apache Pig Latin
 Apex
 APL
 App Inventor for Android's visual block language
@@ -97,7 +97,6 @@ Cilk
 Cilk++
 Claire
 Clarion
-Clean
 Clipper
 CLIPS
 CLIST
@@ -113,7 +112,7 @@ COMAL
 COMIT
 Common Intermediate Language
 CIL
-Common LISP
+Common Lisp
 CL
 COMPASS
 Component Pascal
@@ -139,7 +138,7 @@ Cypher Query Language
 Cython
 CEEMAC
 D
-dlang
+Dlang
 Dart
 Darwin
 DataFlex
@@ -161,7 +160,7 @@ E
 Ease
 Easy PL/I
 EASYTRIEVE PLUS
-eC
+EC
 ECMAScript
 Edinburgh IMP
 EGL
@@ -174,7 +173,7 @@ Emerald
 Epigram
 EPL
 Erlang
-es
+Es
 Escher
 ESPOL
 Esterel
@@ -194,7 +193,7 @@ Factor
 Fantom
 FAUST
 FFP
-fish
+Fish
 Fjölnir
 FL
 Flavors
@@ -225,23 +224,23 @@ Genie
 Geometric Description Language
 GDL
 GEORGE
-OpenGL Shading language
+OpenGL Shading Language
 GLSL
 GNU E
-GNU Ubiquitous Intelligent Language for Extensions 
+GNU Ubiquitous Intelligent Language for Extensions
 GNU Guile
 Go
 Go!
-Game Oriented Assembly Lisp 
+Game Oriented Assembly Lisp
 GOAL
 Gödel
 Golo
-Good Old Mad 
+Good Old Mad
 GOM
 Google Apps Script
 Gosu
 GOTRAN
-General Purpose Simulation system
+General Purpose Simulation System
 GPSS
 GraphTalk
 GRASS
@@ -257,9 +256,9 @@ Hartmann pipelines
 Haskell
 Haxe
 Hermes
-High Level Assembly
+High-Level Assembly
 HLA
-High Level Shader Language
+High-Level Shader Language
 HLSL
 Hollywood
 HolyC
@@ -271,7 +270,7 @@ HyperTalk
 Hy
 Io
 Icon
-IBM Basic assembly language
+IBM Basic Assembly Language
 IBM HAScript
 IBM Informix-4GL
 IBM RPG
@@ -314,11 +313,10 @@ Kojo
 Kotlin
 KRC
 KRL
-KRL
 KRYPTON
 KornShell
 Kodu
-Kv 
+Kv
 Kivy
 LabVIEW
 Ladder
@@ -355,7 +353,7 @@ Lucid
 Lustre
 LYaPAS
 Lynx
-M Formula language
+M Formula Language
 M2001
 M4
 M#
@@ -372,19 +370,19 @@ Mary
 MATLAB
 MASM Microsoft Assembly x86
 MATH-MATIC
-Maude system
-Maxima 
-Max 
+Maude System
+Maxima
+Max
 MaxScript internal language 3D Studio Max
-Maya 
+Maya
 MDL
 Mercury
 Mesa
-MHEG-5 
+MHEG-5
 Microcode
 Microsoft Power Fx
 MIIS
-Milk 
+Milk
 MIMIC
 Mirah
 Miranda
@@ -421,9 +419,9 @@ NewtonScript
 Nial
 Nickle
 Nim
-Nix 
+Nix
 NPL
-Not eXactly C
+Not Exactly C
 NXC
 Not Quite C
 NQC
@@ -448,10 +446,10 @@ Octave
 OmniMark
 Opa
 Opal
-Open Programming Language 
+Open Programming Language
 OPL
 OpenCL
-OpenEdge Advanced Business Language 
+OpenEdge Advanced Business Language
 ABL
 OpenVera
 OpenQASM
@@ -511,8 +509,6 @@ Powerhouse
 PowerBuilder
 PowerShell
 PPL
-Processing
-Processing.js
 Prograph
 Project Verona
 Prolog
@@ -534,7 +530,7 @@ Quantum Computation Language
 QtScript
 QuakeC
 QPL
-.QL
+QL
 R
 R++
 Racket
@@ -579,7 +575,6 @@ ScratchJr
 Script.NET
 Sed
 Seed7
-Self
 SenseTalk
 SequenceL
 Serpent
@@ -599,7 +594,7 @@ Smalltalk
 SML
 Strongtalk
 Snap!
-SNOBOL 
+SNOBOL
 SPITBOL
 Snowball
 SOL
@@ -696,7 +691,7 @@ XPL
 XPL0
 XQuery
 XSB
-XSharp 
+XSharp
 X#
 XSLT
 Xtend
@@ -706,7 +701,6 @@ Yoix
 Z shell
 Zebra, ZPL, ZPL2
 Zeno
-ZetaLisp
 Zig
 Zonnon
 ZOPL
