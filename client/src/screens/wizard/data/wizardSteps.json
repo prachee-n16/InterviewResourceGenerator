@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Let's Get to Know You",
+        "subtitle": "Start by Sharing Your Personal Information.",
+        "activeStep": 0,
+        "buttonText": "Get set up"
+    },
+    {
+        "title": "",
+        "subtitle": "Before we start, can we get your first name?",
+        "activeStep": 0,
+        "inputField": {
+            "placeholder": "Steve"
+        }
+    }
+]

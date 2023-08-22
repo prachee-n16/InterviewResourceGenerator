@@ -50,7 +50,7 @@ export const Landing = () => {
             insights, targeted interview questions, and curated reading
             materials.
           </Typography>
-          <Link to="input-description">
+          <Link to="input-form">
             <Button
               variant="outlined"
               color="primary"
