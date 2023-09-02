@@ -10,12 +10,12 @@
     {
         "subtitle": "Before we start, can we get your name?",
         "activeStep": 0,
-        "component": null
+        "component": "stepOne"
     },
     {
         "subtitle": "How can we reach out to share the results with you?",
         "activeStep": 0,
-        "component": null
+        "component": "contactInfo"
     },
     {
         "subtitle": "What is your preferred learning style?",

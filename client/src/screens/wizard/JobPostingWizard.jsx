@@ -9,6 +9,8 @@ import {
   Button,
 } from '@mui/material';
 import stepsData from './data/wizardSteps.json';
+import { KeysToComponentMap } from './data/wizardStepsComponent';
+
 import { Box } from '@mui/system';
 import { Avatar } from '@mui/material';
 import { blue } from '@mui/material/colors';
@@ -36,24 +38,20 @@ const steps = [
 const JobPostingWizard = () => {
   const [activeStep, setActiveStep] = useState(stepsData[0].activeStep);
   const [activeStepData, setActiveStepData] = useState(stepsData[0].activeStep);
+  const [componentName, setComponentName] = useState('default');
+  const Component = KeysToComponentMap[componentName];
 
   useEffect(() => {
     const handleKeyPress = event => {
-      if (event.key === 'Enter' && stepsData[activeStepData].end === null) {
+      if (event.key == 'Enter' && stepsData[activeStepData].end == null) {
         console.log('ENTER');
         setActiveStepData(prev => prev + 1);
       }
-      if (
-        event.key === 'ArrowRight' &&
-        stepsData[activeStepData].end === null
-      ) {
+      if (event.key == 'ArrowRight' && stepsData[activeStepData].end == null) {
         console.log('Right Arrow');
         setActiveStepData(prev => prev + 1);
       }
-      if (
-        event.key === 'ArrowLeft' &&
-        stepsData[activeStepData].start === null
-      ) {
+      if (event.key == 'ArrowLeft') {
         console.log('Left Arrow');
         setActiveStepData(prev => prev - 1);
       }
@@ -65,10 +63,15 @@ const JobPostingWizard = () => {
   }, []);
 
   useEffect(() => {
-    if (stepsData[activeStepData].activeStep !== activeStep) {
+    if (stepsData[activeStepData].activeStep != activeStep) {
       setActiveStep(stepsData[activeStepData].activeStep);
     }
-  }, [activeStepData]);
+    if (stepsData[activeStepData].component != null) {
+      setComponentName(stepsData[activeStepData].component);
+    } else {
+      setComponentName('default');
+    }
+  }, [activeStepData, activeStep]);
 
   return (
     <Box display="flex">
@@ -133,7 +136,7 @@ const JobPostingWizard = () => {
           <Typography variant="subtitle1" sx={{ fontSize: 24 }} gutterBottom>
             {stepsData[activeStepData].subtitle}
           </Typography>
-
+          <Component />
           <div
             style={{
               display: 'flex',
@@ -151,7 +154,7 @@ const JobPostingWizard = () => {
               variant="outlined"
               onClick={() => setActiveStepData(prev => prev + 1)}
             >
-              {stepsData[activeStepData].buttonText !== null
+              {stepsData[activeStepData].buttonText != null
                 ? stepsData[activeStepData].buttonText
                 : 'NEXT'}
             </Button>
@@ -172,7 +175,7 @@ const JobPostingWizard = () => {
 
       {/* NEXT/PREV STEP BUTTONS */}
       <Box sx={{ position: 'absolute', bottom: 10, right: 10 }}>
-        {stepsData[activeStepData].start === null && (
+        {stepsData[activeStepData].start == null && (
           <IconButton
             disableFocusRipple
             size="medium"
@@ -191,7 +194,7 @@ const JobPostingWizard = () => {
             <NavigateBeforeRoundedIcon />
           </IconButton>
         )}
-        {stepsData[activeStepData].end === null && (
+        {stepsData[activeStepData].end == null && (
           <IconButton
             disableFocusRipple
             size="medium"
