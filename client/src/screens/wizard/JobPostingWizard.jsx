@@ -7,8 +7,6 @@ import {
   Typography,
   IconButton,
   Button,
-  Input,
-  OutlinedInput,
 } from '@mui/material';
 import stepsData from './data/wizardSteps.json';
 import { Box } from '@mui/system';
@@ -23,16 +21,13 @@ const steps = [
     label: 'Personal Information',
   },
   {
-    label: 'Company Information',
-  },
-  {
     label: 'Job Details',
   },
   {
-    label: 'Interview Type',
+    label: 'Company Information',
   },
   {
-    label: 'Preparation Resources',
+    label: 'Interview Details',
   },
   {
     label: 'Review',
@@ -42,18 +37,25 @@ const JobPostingWizard = () => {
   const [activeStep, setActiveStep] = useState(stepsData[0].activeStep);
   const [activeStepData, setActiveStepData] = useState(stepsData[0].activeStep);
 
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
   useEffect(() => {
     const handleKeyPress = event => {
-      if (event.key == 'Enter') {
+      if (event.key === 'Enter' && stepsData[activeStepData].end === null) {
         console.log('ENTER');
         setActiveStepData(prev => prev + 1);
+      }
+      if (
+        event.key === 'ArrowRight' &&
+        stepsData[activeStepData].end === null
+      ) {
+        console.log('Right Arrow');
+        setActiveStepData(prev => prev + 1);
+      }
+      if (
+        event.key === 'ArrowLeft' &&
+        stepsData[activeStepData].start === null
+      ) {
+        console.log('Left Arrow');
+        setActiveStepData(prev => prev - 1);
       }
     };
     document.addEventListener('keydown', handleKeyPress);
@@ -62,8 +64,15 @@ const JobPostingWizard = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (stepsData[activeStepData].activeStep !== activeStep) {
+      setActiveStep(stepsData[activeStepData].activeStep);
+    }
+  }, [activeStepData]);
+
   return (
     <Box display="flex">
+      {/* SIDE STEPPING GRAPHIC */}
       <Box
         sx={{
           flex: '0.3',
@@ -112,10 +121,10 @@ const JobPostingWizard = () => {
                 height: '32px',
               }}
             >
-              {activeStep + 1}
+              {stepsData[activeStepData].activeStep + 1}
             </Avatar>
             <Typography variant="overline">
-              {steps[activeStep].label}
+              {steps[stepsData[activeStepData].activeStep].label}
             </Typography>
           </div>
           <Typography variant="h1" sx={{ width: '100%', fontSize: 60 }}>
@@ -124,19 +133,6 @@ const JobPostingWizard = () => {
           <Typography variant="subtitle1" sx={{ fontSize: 24 }} gutterBottom>
             {stepsData[activeStepData].subtitle}
           </Typography>
-
-          {stepsData[activeStepData].inputField && (
-            <div>
-              <OutlinedInput
-                fullWidth
-                sx={{
-                  fontSize: '20px',
-                  mt: 2,
-                }}
-                placeholder={stepsData[activeStepData].inputField.placeholder}
-              />
-            </div>
-          )}
 
           <div
             style={{
@@ -155,8 +151,8 @@ const JobPostingWizard = () => {
               variant="outlined"
               onClick={() => setActiveStepData(prev => prev + 1)}
             >
-              {stepsData[activeStepData].buttonText
-                ? stepsData[0].buttonText
+              {stepsData[activeStepData].buttonText !== null
+                ? stepsData[activeStepData].buttonText
                 : 'NEXT'}
             </Button>
             <Typography variant="subtitle1" sx={{ fontSize: 12 }}>
@@ -173,40 +169,46 @@ const JobPostingWizard = () => {
           </div>
         </div>
       </Box>
+
+      {/* NEXT/PREV STEP BUTTONS */}
       <Box sx={{ position: 'absolute', bottom: 10, right: 10 }}>
-        <IconButton
-          disableFocusRipple
-          size="medium"
-          sx={{
-            borderRadius: '5px',
-            background: 'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
-            color: 'white',
-            transition: 'transform 0.2s ease-in-out',
-            '&:hover': {
-              transform: 'scale(1.1)', // Increase the scale for a growth effect
-            },
-            mr: 1,
-          }}
-          onClick={() => setActiveStepData(prev => prev - 1)}
-        >
-          <NavigateBeforeRoundedIcon />
-        </IconButton>
-        <IconButton
-          disableFocusRipple
-          size="medium"
-          sx={{
-            borderRadius: '5px',
-            background: 'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
-            color: 'white',
-            transition: 'transform 0.2s ease-in-out',
-            '&:hover': {
-              transform: 'scale(1.1)', // Increase the scale for a growth effect
-            },
-          }}
-          onClick={() => setActiveStepData(prev => prev + 1)}
-        >
-          <NavigateNextRoundedIcon />
-        </IconButton>
+        {stepsData[activeStepData].start === null && (
+          <IconButton
+            disableFocusRipple
+            size="medium"
+            sx={{
+              borderRadius: '5px',
+              background: 'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
+              color: 'white',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.1)', // Increase the scale for a growth effect
+              },
+              mr: 1,
+            }}
+            onClick={() => setActiveStepData(prev => prev - 1)}
+          >
+            <NavigateBeforeRoundedIcon />
+          </IconButton>
+        )}
+        {stepsData[activeStepData].end === null && (
+          <IconButton
+            disableFocusRipple
+            size="medium"
+            sx={{
+              borderRadius: '5px',
+              background: 'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
+              color: 'white',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.1)', // Increase the scale for a growth effect
+              },
+            }}
+            onClick={() => setActiveStepData(prev => prev + 1)}
+          >
+            <NavigateNextRoundedIcon />
+          </IconButton>
+        )}
       </Box>
     </Box>
   );
