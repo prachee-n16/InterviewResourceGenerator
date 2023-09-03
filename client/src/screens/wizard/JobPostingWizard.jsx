@@ -136,7 +136,7 @@ const JobPostingWizard = () => {
           <Typography variant="subtitle1" sx={{ fontSize: 24 }} gutterBottom>
             {stepsData[activeStepData].subtitle}
           </Typography>
-          <Component />
+          <Component {...stepsData[activeStepData].props} />
           <div
             style={{
               display: 'flex',

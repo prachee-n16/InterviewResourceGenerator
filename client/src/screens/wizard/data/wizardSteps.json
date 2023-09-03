@@ -10,6 +10,12 @@
     {
         "subtitle": "Before we start, can we get your name?",
         "activeStep": 0,
+        "props": {
+            "data": {
+                "placeholder": "Jane Doe",
+                "fullWidth": true
+            }
+        },
         "component": "stepOne"
     },
     {
@@ -18,14 +24,23 @@
         "component": "contactInfo"
     },
     {
-        "subtitle": "What is your preferred learning style?",
+        "subtitle": "How do you best prepare for an interview?",
         "activeStep": 0,
-        "component": null
+        "component": "preferredLearningStyle"
     },
     {
         "subtitle": "Are there any preferred learning resources you'd like to use?",
         "activeStep": 0,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "Enter multiple website links separated by comma",
+                "sx": {"fontSize": "3"},
+                "fullWidth": true,
+                "multiline": true,
+                "rows": 4
+            }
+        }
     },
     {
         "title": "Job Details",
@@ -36,27 +51,57 @@
     {
         "subtitle": "What's your current job title?",
         "activeStep": 1,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "Software Developer",
+                "fullWidth": true
+            }
+        }
     },
     {
         "subtitle": "What's your desired job title?",
         "activeStep": 1,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "Software Developer",
+                "fullWidth": true
+            }
+        }
     },
     {
         "subtitle": "In which industry or field is the job located?",
         "activeStep": 1,
-        "component": null
+        "component": "industry"
     },
     {
         "subtitle": "What are the primary responsibilities of this role?",
         "activeStep": 1,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "List the primary responsibilities of this role, separating each point with a bullet point...",
+                "sx": {"fontSize": "3"},
+                "fullWidth": true,
+                "multiline": true,
+                "rows": 4
+            }
+        }
     },
     {
         "subtitle": "What qualifications or skills are required for this position?",
         "activeStep": 1,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "List the qualifications or skills of this role, separating each point with a bullet point...",
+                "sx": {"fontSize": "3"},
+                "fullWidth": true,
+                "multiline": true,
+                "rows": 4
+            }
+        }
     },
     {
         "title": "Company Information",
@@ -67,17 +112,18 @@
     {
         "subtitle": "What is the company's name?",
         "activeStep": 2,
-        "component": null
-    },
-    {
-        "subtitle": "Did we find the correct company you're interested in? Please confirm if this is the company you have in mind.",
-        "activeStep": 2,
-        "component": null
+        "props": {
+            "data": {
+                "placeholder": "Enter Company Name",
+                "fullWidth": true
+            }
+        },
+        "component": "stepOne"
     },
     {
         "subtitle": "How familiar are you with the company's mission, values, and culture?",
         "activeStep": 2,
-        "component": null
+        "component": "familiarityRank"
     },
     {
         "title": "Interview Details",
@@ -88,22 +134,26 @@
     {
         "subtitle": "What is your availability for interview preparation?",
         "activeStep": 3,
-        "component": null
-    },
-    {
-        "subtitle": "Is there a specific deadline for your interview preparation?",
-        "activeStep": 3,
-        "component": null
+        "component": "interviewPrep"
     },
     {
         "subtitle": "Are you familiar with common behavioral interview questions?",
         "activeStep": 3,
-        "component": null
+        "component": "familiarityRank"
     },
     {
         "subtitle": "Are there specific areas or aspects where you feel you need improvement?",
         "activeStep": 3,
-        "component": null
+        "component": "stepOne",
+        "props": {
+            "data": {
+                "placeholder": "List the specific areas of development, separating each topic with a bullet point...",
+                "sx": {"fontSize": "3"},
+                "fullWidth": true,
+                "multiline": true,
+                "rows": 4
+            }
+        }
     },
     {
         "title": "Review",
