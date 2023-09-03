@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "title": "Let's Get to Know You",
         "subtitle": "Start by Sharing Your Personal Information.",
         "activeStep": 0,
@@ -8,6 +9,7 @@
         "buttonText": "Get set up"
     },
     {
+        "id": 2,
         "subtitle": "Before we start, can we get your name?",
         "activeStep": 0,
         "props": {
@@ -19,16 +21,19 @@
         "component": "stepOne"
     },
     {
+        "id": 3,
         "subtitle": "How can we reach out to share the results with you?",
         "activeStep": 0,
         "component": "contactInfo"
     },
     {
+        "id": 4,
         "subtitle": "How do you best prepare for an interview?",
         "activeStep": 0,
         "component": "preferredLearningStyle"
     },
     {
+        "id": 5,
         "subtitle": "Are there any preferred learning resources you'd like to use?",
         "activeStep": 0,
         "component": "stepOne",
@@ -43,12 +48,14 @@
         }
     },
     {
+        "id": 6,
         "title": "Job Details",
         "subtitle": "Let's see what their ideal candidate looks like!",
         "component": null,
         "activeStep": 1
     },
     {
+        "id": 7,
         "subtitle": "What's your current job title?",
         "activeStep": 1,
         "component": "stepOne",
@@ -60,6 +67,7 @@
         }
     },
     {
+        "id": 8,
         "subtitle": "What's your desired job title?",
         "activeStep": 1,
         "component": "stepOne",
@@ -71,11 +79,13 @@
         }
     },
     {
+        "id": 9,
         "subtitle": "In which industry or field is the job located?",
         "activeStep": 1,
         "component": "industry"
     },
     {
+        "id": 10,
         "subtitle": "What are the primary responsibilities of this role?",
         "activeStep": 1,
         "component": "stepOne",
@@ -90,6 +100,7 @@
         }
     },
     {
+        "id": 11,
         "subtitle": "What qualifications or skills are required for this position?",
         "activeStep": 1,
         "component": "stepOne",
@@ -104,12 +115,14 @@
         }
     },
     {
+        "id": 12,
         "title": "Company Information",
         "subtitle": "Tell us more about your dream company!",
         "component": null,
         "activeStep": 2
     },
     {
+        "id": 13,
         "subtitle": "What is the company's name?",
         "activeStep": 2,
         "props": {
@@ -121,27 +134,32 @@
         "component": "stepOne"
     },
     {
+        "id": 14,
         "subtitle": "How familiar are you with the company's mission, values, and culture?",
         "activeStep": 2,
         "component": "familiarityRank"
     },
     {
+        "id": 15,
         "title": "Interview Details",
         "subtitle": "How can we help you prepare for this interview?",
         "component": null,
         "activeStep": 3
     },
     {
+        "id": 16,
         "subtitle": "What is your availability for interview preparation?",
         "activeStep": 3,
         "component": "interviewPrep"
     },
     {
+        "id": 17,
         "subtitle": "Are you familiar with common behavioral interview questions?",
         "activeStep": 3,
         "component": "familiarityRank"
     },
     {
+        "id": 18,
         "subtitle": "Are there specific areas or aspects where you feel you need improvement?",
         "activeStep": 3,
         "component": "stepOne",
@@ -156,6 +174,7 @@
         }
     },
     {
+        "id": 19,
         "title": "Review",
         "subtitle": "",
         "component": null,

@@ -43,11 +43,12 @@ const JobPostingWizard = () => {
 
   useEffect(() => {
     const handleKeyPress = event => {
-      if (event.key == 'Enter' && stepsData[activeStepData].end == null) {
+      console.log(activeStep);
+      if (event.key == 'Enter') {
         console.log('ENTER');
         setActiveStepData(prev => prev + 1);
       }
-      if (event.key == 'ArrowRight' && stepsData[activeStepData].end == null) {
+      if (event.key == 'ArrowRight') {
         console.log('Right Arrow');
         setActiveStepData(prev => prev + 1);
       }
