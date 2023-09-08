@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Typography, Snackbar, Alert } from '@mui/material';
+import { useUrl } from './UrlContext';
 
 const JobPostingUrl = () => {
-  const [url, setUrl] = useState('');
+  const { url, setUrl, checkURL, setCheckUrl } = useUrl();
   const [openSnackbar, setOpenSnackbar] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState('');
   function isValidUrl(str) {
     const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
     // Test the URL against the pattern
     return urlPattern.test(str);
   }
+
+  useEffect(() => {
+    if (checkURL == true) {
+      console.log('run effect');
+      handleSubmit();
+    }
+    setCheckUrl(false);
+  }, [checkURL, setCheckUrl]);
 
   const handleUrlChange = event => {
     setUrl(event.target.value);
@@ -17,14 +26,19 @@ const JobPostingUrl = () => {
   };
 
   const handleSubmit = event => {
-    event.preventDefault();
+    event && event.preventDefault();
     //Check if url is valid
     if (isValidUrl(url)) {
       // Do something with the form data, for example, send it to a server
       console.log('Form submitted:', url);
+      setErrorMessage(
+        `Unable to scrape data from ${url}; Please enter information manually.`
+      );
+      setOpenSnackbar(true);
       // Reset the form after submission if needed
       setUrl('');
     } else {
+      setErrorMessage(`${url} does not correspond to a valid website URL.`);
       setOpenSnackbar(true);
     }
   };
@@ -35,7 +49,7 @@ const JobPostingUrl = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Typography variant="h6" sx={{ fontWeight: 300 }}>
+      <Typography variant="h6" sx={{ fontWeight: 500 }}>
         Submit a link to the job posting.
       </Typography>
       <Typography
@@ -66,7 +80,7 @@ const JobPostingUrl = () => {
           severity="error"
           sx={{ width: '100%' }}
         >
-          {url} does not correspond to a valid website URL.
+          {errorMessage}
         </Alert>
       </Snackbar>
     </form>

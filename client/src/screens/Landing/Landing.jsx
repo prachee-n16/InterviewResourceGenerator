@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
+import Modal from '@mui/material/Modal';
+
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
 import './Landing.css';
 
 export const Landing = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
       <Box
@@ -50,15 +62,14 @@ export const Landing = () => {
             insights, targeted interview questions, and curated reading
             materials.
           </Typography>
-          <Link to="input-form">
-            <Button
-              variant="outlined"
-              color="primary"
-              endIcon={<NavigateNextRoundedIcon />}
-            >
-              Get Started
-            </Button>
-          </Link>
+          <Button
+            variant="outlined"
+            color="primary"
+            endIcon={<NavigateNextRoundedIcon />}
+            onClick={handleOpenModal}
+          >
+            Get Started
+          </Button>
         </Box>
       </Box>
       <Box>
@@ -75,6 +86,71 @@ export const Landing = () => {
           <li></li>
         </ul>
       </Box>
+
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            p: 4,
+            minWidth: 500,
+            textAlign: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              gap: 4,
+            }}
+          >
+            <Typography variant="h4" sx={{}}>
+              Unlock
+            </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 'bold',
+                background: 'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
+                '-webkit-background-clip': 'text',
+                '-webkit-text-fill-color': 'transparent',
+              }}
+            >
+              valuable
+            </Typography>
+            <Typography variant="h4" sx={{}}>
+              insights!
+            </Typography>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <Link to="/input-description">
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                sx={{
+                  background:
+                    'linear-gradient(45deg, #1560BD 30%, #002366 90%)',
+                  mt: 4,
+                }}
+              >
+                Take the Quick Survey
+              </Button>
+            </Link>
+            <Link to="/input-form">
+              <Button fullWidth variant="outlined" color="primary">
+                Dive into the Detailed Survey
+              </Button>
+            </Link>
+          </div>
+        </Box>
+      </Modal>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'; // Import the useDispatch hook
+import { useUrl } from './UrlContext';
 
 import {
   Box,
@@ -15,6 +16,7 @@ import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import { saveJobPostDetails } from '../../redux/actions/jobPostActions';
 
 const ManualPost = () => {
+  const { url, setCheckUrl } = useUrl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,40 +31,44 @@ const ManualPost = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    setJobPostDetails({
-      jobTitle: '',
-      company: '',
-      jobField: '',
-      description: '',
-    });
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/find-job-posting', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jobPostDetails),
-        mode: 'cors',
+    if (url != '') {
+      setCheckUrl(true);
+    } else {
+      setJobPostDetails({
+        jobTitle: '',
+        company: '',
+        jobField: '',
+        description: '',
       });
+      setIsLoading(true);
 
-      if (response.ok) {
-        // Request was successful, handle the response if needed
-        const data = await response.json();
-        console.log('Response from the backend API:', data);
+      try {
+        const response = await fetch('http://127.0.0.1:8000/find-job-posting', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(jobPostDetails),
+          mode: 'cors',
+        });
 
-        dispatch(saveJobPostDetails(data));
+        if (response.ok) {
+          // Request was successful, handle the response if needed
+          const data = await response.json();
+          console.log('Response from the backend API:', data);
 
-        navigate('/summarize-results');
-      } else {
-        // Request failed, handle the error if needed
-        console.error('Error:', response.statusText);
+          dispatch(saveJobPostDetails(data));
+
+          navigate('/summarize-results');
+        } else {
+          // Request failed, handle the error if needed
+          console.error('Error:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleInputChange = event => {
@@ -81,7 +87,7 @@ const ManualPost = () => {
         </Typography>
         <TextField
           fullWidth
-          required
+          required={url == '' ? true : false}
           id="jobTitle"
           placeholder="Enter Job Title"
           variant="standard"
@@ -101,7 +107,7 @@ const ManualPost = () => {
         </Typography>
         <TextField
           value={jobPostDetails.company}
-          required
+          required={url == '' ? true : false}
           label="Company"
           variant="outlined"
           sx={{
@@ -114,7 +120,7 @@ const ManualPost = () => {
         {/* Convert this to drop down? */}
         <TextField
           value={jobPostDetails.jobField}
-          required
+          required={url == '' ? true : false}
           label="Field"
           variant="outlined"
           sx={{
@@ -137,7 +143,7 @@ const ManualPost = () => {
         </Typography>
         <TextField
           value={jobPostDetails.description}
-          required
+          required={url == '' ? true : false}
           label="Description"
           variant="outlined"
           multiline
