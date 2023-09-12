@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { Typography, FormControlLabel } from '@mui/material';
+import { useUrl } from '../../UrlInputForm/UrlContext';
 
 const PreferredLearningStyle = () => {
+  const { setJobPostDetails } = useUrl();
   const [selectedValues, setSelectedValues] = React.useState({
     video: false,
     article: false,
     interactive: false,
     other: false,
   });
+
+  useEffect(() => {
+    setJobPostDetails(prev => ({
+      ...prev,
+      preferredLearningStyle: selectedValues,
+    }));
+  }, [selectedValues]);
 
   const handleChange = name => event => {
     setSelectedValues({

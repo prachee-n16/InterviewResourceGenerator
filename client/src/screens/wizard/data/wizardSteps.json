@@ -14,6 +14,7 @@
         "activeStep": 0,
         "props": {
             "data": {
+                "id": "name",
                 "placeholder": "Jane Doe",
                 "fullWidth": true
             }
@@ -39,6 +40,7 @@
         "component": "stepOne",
         "props": {
             "data": {
+                "id": "preferredLearningStyleLong",
                 "placeholder": "Enter multiple website links separated by comma",
                 "sx": {"fontSize": "3"},
                 "fullWidth": true,
@@ -61,6 +63,7 @@
         "component": "stepOne",
         "props": {
             "data": {
+                "id": "currentJobTitle",
                 "placeholder": "Software Developer",
                 "fullWidth": true
             }
@@ -73,6 +76,7 @@
         "component": "stepOne",
         "props": {
             "data": {
+                "id": "desiredJobTitle",
                 "placeholder": "Software Developer",
                 "fullWidth": true
             }
@@ -91,6 +95,7 @@
         "component": "stepOne",
         "props": {
             "data": {
+                "id": "responsibilities",
                 "placeholder": "List the primary responsibilities of this role, separating each point with a bullet point...",
                 "sx": {"fontSize": "3"},
                 "fullWidth": true,
@@ -106,6 +111,7 @@
         "component": "stepOne",
         "props": {
             "data": {
+                "id": "qualifications",
                 "placeholder": "List the qualifications or skills of this role, separating each point with a bullet point...",
                 "sx": {"fontSize": "3"},
                 "fullWidth": true,
@@ -127,6 +133,7 @@
         "activeStep": 2,
         "props": {
             "data": {
+                "id": "company",
                 "placeholder": "Enter Company Name",
                 "fullWidth": true
             }
@@ -137,6 +144,11 @@
         "id": 14,
         "subtitle": "How familiar are you with the company's mission, values, and culture?",
         "activeStep": 2,
+        "props": {
+            "data": {
+                "id": "company_mission_familiarity"
+            }
+        },
         "component": "familiarityRank"
     },
     {
@@ -156,7 +168,12 @@
         "id": 17,
         "subtitle": "Are you familiar with common behavioral interview questions?",
         "activeStep": 3,
-        "component": "familiarityRank"
+        "component": "familiarityRank",
+        "props": {
+            "data": {
+                "id": "behavioral_questions_familiarity"
+            }
+        }
     },
     {
         "id": 18,
@@ -169,7 +186,8 @@
                 "sx": {"fontSize": "3"},
                 "fullWidth": true,
                 "multiline": true,
-                "rows": 4
+                "rows": 4,
+                "id": "areas_of_development"
             }
         }
     },

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
+import { UrlProvider } from './screens/UrlInputForm/UrlContext';
 
 // local imports
 import Navbar from './components/Navbar';
@@ -30,7 +31,15 @@ const App = () => {
               path="/summarize-results"
               element={<ResultsSummary />}
             /> */}
-            <Route exact path="/input-form" element={<JobPostingWizard />} />
+            <Route
+              exact
+              path="/input-form"
+              element={
+                <UrlProvider>
+                  <JobPostingWizard />
+                </UrlProvider>
+              }
+            />
           </Routes>
         </ThemeProvider>
       </Router>

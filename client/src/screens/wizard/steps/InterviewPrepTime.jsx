@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { useUrl } from '../../UrlInputForm/UrlContext';
 
 const InterviewPrepTime = () => {
+  const { setJobPostDetails } = useUrl();
   const [timeframe, setTimeframe] = useState('');
 
   const handleChange = event => {
     setTimeframe(event.target.value);
+    setJobPostDetails(prev => ({
+      ...prev,
+      interview_prep_time: timeframe,
+    }));
   };
 
   return (

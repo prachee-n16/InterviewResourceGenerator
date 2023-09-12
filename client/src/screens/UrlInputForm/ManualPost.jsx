@@ -10,39 +10,34 @@ import {
   Typography,
   Button,
   CircularProgress,
+  Alert,
+  Snackbar,
 } from '@mui/material';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 
 import { saveJobPostDetails } from '../../redux/actions/jobPostActions';
 
 const ManualPost = () => {
-  const { url, setCheckUrl } = useUrl();
+  const { url, setCheckUrl, jobPostDetails, setJobPostDetails } = useUrl();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // States to make all inputs controlled
-  const [jobPostDetails, setJobPostDetails] = useState({
-    jobTitle: '',
-    company: '',
-    jobField: '',
-    description: '',
-  });
   const [isLoading, setIsLoading] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleCloseAlert = (event, reason) => {
+    setOpenSnackbar(false);
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
     if (url != '') {
       setCheckUrl(true);
     } else {
-      setJobPostDetails({
-        jobTitle: '',
-        company: '',
-        jobField: '',
-        description: '',
-      });
       setIsLoading(true);
 
       try {
+        console.log(jobPostDetails);
         const response = await fetch('http://127.0.0.1:8000/find-job-posting', {
           method: 'POST',
           headers: {
@@ -63,11 +58,20 @@ const ManualPost = () => {
         } else {
           // Request failed, handle the error if needed
           console.error('Error:', response.statusText);
+          setOpenSnackbar(true);
         }
       } catch (error) {
         console.error('Error:', error);
+        setOpenSnackbar(true);
       }
       setIsLoading(false);
+      setJobPostDetails(prev => ({
+        jobTitle: '',
+        company: '',
+        jobField: '',
+        description: '',
+        ...prev,
+      }));
     }
   };
 
@@ -177,6 +181,19 @@ const ManualPost = () => {
       <Backdrop sx={{ color: '#fff', zIndex: 1 }} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity="error"
+          sx={{ width: '100%' }}
+        >
+          Server down, please try later.
+        </Alert>
+      </Snackbar>
     </>
   );
 };

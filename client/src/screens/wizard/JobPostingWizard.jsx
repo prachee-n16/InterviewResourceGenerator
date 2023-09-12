@@ -8,6 +8,7 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
+import { useUrl } from '../UrlInputForm/UrlContext';
 import stepsData from './data/wizardSteps.json';
 import { KeysToComponentMap } from './data/wizardStepsComponent';
 
@@ -43,16 +44,15 @@ const JobPostingWizard = () => {
 
   useEffect(() => {
     const handleKeyPress = event => {
-      console.log(activeStep);
-      if (event.key == 'Enter') {
+      if (event.key == 'Enter' && stepsData[activeStepData].end == null) {
         console.log('ENTER');
         setActiveStepData(prev => prev + 1);
       }
-      if (event.key == 'ArrowRight') {
+      if (event.key == 'ArrowRight' && stepsData[activeStepData].end == null) {
         console.log('Right Arrow');
         setActiveStepData(prev => prev + 1);
       }
-      if (event.key == 'ArrowLeft') {
+      if (event.key == 'ArrowLeft' && stepsData[activeStepData].start == null) {
         console.log('Left Arrow');
         setActiveStepData(prev => prev - 1);
       }
@@ -153,7 +153,11 @@ const JobPostingWizard = () => {
                 color: 'white',
               }}
               variant="outlined"
-              onClick={() => setActiveStepData(prev => prev + 1)}
+              onClick={
+                stepsData[activeStepData].end == null
+                  ? () => setActiveStepData(prev => prev + 1)
+                  : () => {}
+              }
             >
               {stepsData[activeStepData].buttonText != null
                 ? stepsData[activeStepData].buttonText
@@ -208,7 +212,11 @@ const JobPostingWizard = () => {
                 transform: 'scale(1.1)', // Increase the scale for a growth effect
               },
             }}
-            onClick={() => setActiveStepData(prev => prev + 1)}
+            onClick={
+              stepsData[activeStepData].end != null
+                ? () => setActiveStepData(prev => prev + 1)
+                : () => {}
+            }
           >
             <NavigateNextRoundedIcon />
           </IconButton>

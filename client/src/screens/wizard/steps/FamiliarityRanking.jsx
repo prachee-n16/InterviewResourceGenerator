@@ -4,11 +4,17 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useUrl } from '../../UrlInputForm/UrlContext';
 
-const FamiliarityRanking = () => {
+const FamiliarityRanking = props => {
+  const { setJobPostDetails } = useUrl();
   const [ranking, setRanking] = useState('very-familiar');
 
   const handleRankingChange = event => {
+    setJobPostDetails(prev => ({
+      ...prev,
+      [props.data.id]: event.target.value,
+    }));
     setRanking(event.target.value);
   };
 

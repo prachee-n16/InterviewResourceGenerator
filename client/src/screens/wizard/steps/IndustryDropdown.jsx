@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Typography } from '@mui/material';
+import { useUrl } from '../../UrlInputForm/UrlContext';
 
 const IndustryDropdown = () => {
+  const { setJobPostDetails } = useUrl();
   const [industry, setIndustry] = useState('');
 
   const handleIndustryChange = event => {
     setIndustry(event.target.value);
   };
+
+  useEffect(() => {
+    setJobPostDetails(prev => ({
+      ...prev,
+      industry: industry,
+    }));
+  }, [industry]);
 
   return (
     <FormControl style={{ minWidth: '560px' }}>

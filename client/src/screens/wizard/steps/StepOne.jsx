@@ -1,12 +1,24 @@
 import React, { useEffect } from 'react';
 import { Input, OutlinedInput, Typography } from '@mui/material';
+import { useUrl } from '../../UrlInputForm/UrlContext';
+
 const StepOne = props => {
+  const { setJobPostDetails } = useUrl();
   const [inputValue, setInputValue] = React.useState('');
 
   // Handle changes to the input value
   const handleInputChange = event => {
     setInputValue(event.target.value);
   };
+
+  useEffect(() => {
+    if (props.data.id) {
+      setJobPostDetails(prev => ({
+        ...prev,
+        [props.data.id]: inputValue,
+      }));
+    }
+  }, [inputValue, setJobPostDetails]);
 
   return (
     <div>
