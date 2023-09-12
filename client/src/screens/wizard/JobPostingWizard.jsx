@@ -8,6 +8,9 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; // Import the useDispatch hook
+import { saveJobPostDetails } from '../../redux/actions/jobPostActions';
 import { useUrl } from '../UrlInputForm/UrlContext';
 import stepsData from './data/wizardSteps.json';
 import { KeysToComponentMap } from './data/wizardStepsComponent';
@@ -37,6 +40,11 @@ const steps = [
   },
 ];
 const JobPostingWizard = () => {
+  const { jobPostDetails, setJobPostDetails } = useUrl();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [activeStep, setActiveStep] = useState(stepsData[0].activeStep);
   const [activeStepData, setActiveStepData] = useState(stepsData[0].activeStep);
   const [componentName, setComponentName] = useState('default');
@@ -73,6 +81,28 @@ const JobPostingWizard = () => {
       setComponentName('default');
     }
   }, [activeStepData, activeStep]);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/find-job-posting', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobPostDetails),
+        mode: 'cors',
+      });
+      if (response.ok) {
+        // Request was successful, handle the response if needed
+        const data = await response.json();
+        console.log('Response from the backend API:', data);
+
+        dispatch(saveJobPostDetails(data));
+
+        navigate('/summarize-results');
+      }
+    } catch (error) {}
+  };
 
   return (
     <Box display="flex">
@@ -156,7 +186,7 @@ const JobPostingWizard = () => {
               onClick={
                 stepsData[activeStepData].end == null
                   ? () => setActiveStepData(prev => prev + 1)
-                  : () => {}
+                  : handleSubmit
               }
             >
               {stepsData[activeStepData].buttonText != null
@@ -213,7 +243,7 @@ const JobPostingWizard = () => {
               },
             }}
             onClick={
-              stepsData[activeStepData].end != null
+              stepsData[activeStepData].end == null
                 ? () => setActiveStepData(prev => prev + 1)
                 : () => {}
             }
