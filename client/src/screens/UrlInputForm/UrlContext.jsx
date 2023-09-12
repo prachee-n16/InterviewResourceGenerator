@@ -8,10 +8,26 @@ export function UrlProvider({ children }) {
   // States to make all inputs controlled
   const [jobPostDetails, setJobPostDetails] = useState({
     name: '',
+    contactMethod: '',
+    contactDetails: '',
+    preferredLearningStyle: {
+      video: false,
+      article: false,
+      interactive: false,
+      other: false,
+    },
+    preferredLearningStyleLong: '',
+    currentJobTitle: '',
     jobTitle: '',
     company: '',
     jobField: '',
     description: '',
+    responsibilities: '',
+    qualifications: '',
+    company_mission_familiarity: '',
+    behavioral_questions_familiarity: '',
+    areas_of_development: '',
+    interviewPrep: '',
   });
 
   useEffect(() => {

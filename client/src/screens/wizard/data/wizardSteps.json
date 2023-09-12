@@ -76,7 +76,7 @@
         "component": "stepOne",
         "props": {
             "data": {
-                "id": "desiredJobTitle",
+                "id": "jobTitle",
                 "placeholder": "Software Developer",
                 "fullWidth": true
             }
