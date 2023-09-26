@@ -23,31 +23,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+# need to change the non-strings (objects) into the write model
 class JobPostingRequest(BaseModel):
+    name: str
+    contactMethod: str
+    contactDetails: str
+    # Not actually a string.
+    preferredLearningStyle: str
+    preferredLearningStyleLong: str
+    currentJobTitle: str
     jobTitle: str
     company: str
     jobField: str
+    responsibilities: str
+    qualifications: str
+    company_mission_familiarity: str
+    behavioral_questions_familiarity: str
+    areas_of_development: str
+    interviewPrep: str
     description: str
 
 # Define a Path Operation Decorator?
 # TODO: Read up on this: https://realpython.com/primer-on-python-decorators/#simple-decorators
-
-# Query: String we are searching for
-# TLD stands for the top-level domain which means we want to search our results on google.com or google. in or some other domain.
-# lang: lang stands for language.
-# num: Number of results we want.
-# stop: The last result to retrieve. Use None to keep searching forever.
-# pause: Lapse to wait between HTTP requests. Lapse too short may cause Google to block your IP. Keeping significant lapses will make your program slow but it’s a safe and better option.
-# Return: Generator (iterator) that yields found URLs. If the stop parameter is None the iterator will loop forever.
-
-
-def perform_google_search(query, tld="co.in", num=3, stop=2, pause=2):
-    results = []
-    for url in search(query, tld=tld, num=num, stop=stop, pause=pause):
-        results.append(url)
-    return results
-
 
 @app.get("/")
 # Some related additional readings: https://fastapi.tiangolo.com/async/
@@ -57,23 +54,5 @@ async def root():
 
 @app.post("/find-job-posting")
 async def get_job_posting_details(data: JobPostingRequest):
-    title = data.jobTitle
-    jobField = data.jobField
-    company = data.company
-    description = data.description
-
-    url_lists = {}
-    url_lists['url_title'] = perform_google_search(
-        f"{title} interview questions"
-    )
-
-    url_lists['url_jobField'] = perform_google_search(
-        f"latest news in {jobField} jobs"
-    )
-
-    url_lists['url_company'] = perform_google_search(
-        f"{company} Glassdoor site:glassdoor.com", "co.in", 1, 1, 2
-    )
-
-    print(url_lists)
-    return url_lists
+    # Destructure data object so we know what we are dealing with
+    return []
